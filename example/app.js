@@ -3,15 +3,10 @@ const breezy = require('../index');
 const tendermint = require('tendermint-node');
 const Accounts = require('../lib/services/accounts');
 
+const tstaccounts = require('./testaccounts');
+
 // Don't forget to export TM_BINARY
 const HOME = './testdb'
-
-let bob = {
-    name: 'Bob',
-    privateKey: 'a12133c8e2422999ceca9113eb26bf62b197ac1a9052b395655c6db4b6c1b005',
-    publicKey: '21e1d1b0929ce31558bba7a0be4a8890be740cfa495ec507c5f3264ec868d920',
-    address: '4c2138057887adca5fb554d7fd0e1c938b686e91'
-};
 
 function main() {
     tendermint.initSync(HOME);
@@ -19,14 +14,17 @@ function main() {
     let app = breezy.app(HOME);
 
     app.onInitChain(async (db) => {
-        Accounts.createGenesisAccount(db, bob);
         db.set('current', {
             value: 0
+        });
+        Object.values(tstaccounts).forEach(acct => {
+            Accounts.createGenesisAccount(db, acct);
         });
     });
 
     app.onVerifyTx(Accounts.authenticateAccount);
 
+    app.onTx('account', Accounts.accountTxHandler);
     app.onTx('add', async (ctx) => {
         let v = ctx.msg.data.value;
         let current = await ctx.get('current');
@@ -47,7 +45,7 @@ function main() {
     app.onQuery('getcount', async (key, ctx) => {
         return await ctx.get(key);
     });
-    app.onQuery('account', Accounts.accountQuery);
+    app.onQuery('accountview', Accounts.accountQuery);
 
     app.run();
 
