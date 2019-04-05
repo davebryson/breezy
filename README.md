@@ -3,7 +3,7 @@
 A simple framework for building Tendermint Application.  Primarily intended for rapid prototypes/demos :boom:
 
 What's it look like?:
-```javascript
+```
 const breezy = require('breezy);
 
 app = breezy.app('./homedir');
