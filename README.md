@@ -1,8 +1,8 @@
 ## Breezy
 
-A simple framework for building Tendermint applications.  Primarily intended for rapid prototypes/demos :boom:
+A simple framework for building Tendermint applications.  Primarily intended for rapid prototypes/demos.
 
-What's it look like?:
+What does it look like?
 ```
 const breezy = require('breezy);
 
