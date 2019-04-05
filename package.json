@@ -1,0 +1,31 @@
+{
+  "name": "breezy",
+  "version": "0.0.1",
+  "description": "simple framework for building tendermint applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "bmocha --reporter spec test/*.js"
+  },
+  "keywords": [
+    "abci",
+    "tendermint",
+    "blockchain"
+  ],
+  "author": "Dave Bryson",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "abci": "^5.0.1",
+    "bsert": "0.0.10",
+    "create-hash": "^1.2.0",
+    "debug": "^4.1.1",
+    "elliptic": "^6.4.1",
+    "level": "^5.0.1",
+    "merkle-patricia-tree": "^3.0.0",
+    "msgpack5": "^4.2.1",
+    "tendermint": "^4.0.2",
+    "tendermint-node": "^5.1.0"
+  },
+  "devDependencies": {
+    "bmocha": "^2.1.0"
+  }
+}
