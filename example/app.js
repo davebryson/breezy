@@ -5,7 +5,11 @@ const Accounts = require('../lib/services/accounts');
 
 const tstaccounts = require('./testaccounts');
 
-// Don't forget to export TM_BINARY
+/**
+ * NOTE: This example assumes you have Tendermint installed and in your path.
+ * AND, you've also exported the environment variable TM_BINARY that points to
+ * the Tendermint executable.
+ */
 const HOME = './testdb'
 
 function main() {
