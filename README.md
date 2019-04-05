@@ -1,6 +1,6 @@
 ## Breezy
 
-A simple framework for building Tendermint Application.  Primarily intended for rapid prototypes/demos :boom:
+A simple framework for building Tendermint applications.  Primarily intended for rapid prototypes/demos :boom:
 
 What's it look like?:
 ```
