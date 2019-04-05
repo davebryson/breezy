@@ -9,7 +9,6 @@ account['bob'] = {
     publicKey: '21e1d1b0929ce31558bba7a0be4a8890be740cfa495ec507c5f3264ec868d920',
     address: '4c2138057887adca5fb554d7fd0e1c938b686e91'
 };
-
 account['alice'] = {
     name: 'Alice',
     privateKey: '9cef276d41fcf0b1c6d9fdea32a1e83733dc221356a8eef1bcc359b234ba2c92',

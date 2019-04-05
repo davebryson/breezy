@@ -38,3 +38,5 @@ app.onQuery('name', async (key ctx) => {
 // Start the ABCI server
 app.run();
 ```
+
+See the `example` directory.
