@@ -1,9 +1,8 @@
 const assert = require('bsert');
-const {
-    Message
-} = require('../lib/common');
-const Breezy = require('../lib/application/breezy');
-const Accounts = require('../lib/services/accounts');
+
+const Message = require('../index').Message;
+const breezymock = require('../index').mock;
+const Accounts = require('../index').accounts;
 
 const msgpack = require('msgpack5')();
 
@@ -23,7 +22,8 @@ let testAccounts = [{
 
 describe('abci', () => {
     it('should handle tx and queries', async () => {
-        let app = new Breezy('', true);
+        let app = breezymock();
+
         app.onInitChain((db) => {
             db.set('count', {
                 val: 1
@@ -70,7 +70,8 @@ describe('abci', () => {
     })
 
     it('should handle checkTx', async () => {
-        let app = new Breezy('', true);
+        let app = breezymock();
+
         app.onInitChain(async (db) => {
             // Load some accounts
             for (let i = 0; i < testAccounts.length; i++) {
