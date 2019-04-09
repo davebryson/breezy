@@ -3,9 +3,7 @@
 const assert = require('bsert');
 const breezy = require('../index');
 const debug = require('debug')('cli');
-
 const tstaccounts = require('./testaccounts');
-
 
 /*
   cli usage:
@@ -68,6 +66,18 @@ async function main() {
             });
             let result2 = await client.sendTx(transfermsg, sender.privateKey);
             debug(result2);
+            process.exit(0);
+
+        case 'querystring':
+            debug(await client.query('randomtest', 'hellothere'));
+            process.exit(0);
+
+        case 'queryobj':
+            let robj = {
+                name: 'dave',
+                data: 'hello'
+            }
+            debug(await client.query('randomtest', robj));
             process.exit(0);
 
         default:

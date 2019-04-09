@@ -6,9 +6,9 @@ const Accounts = require('../lib/services/accounts');
 const tstaccounts = require('./testaccounts');
 
 /**
- * NOTE: This example assumes you have Tendermint installed and in your path.
+ * NOTE: This example assumes you have Tendermint installed.
  * AND, you've also exported the environment variable TM_BINARY that points to
- * the Tendermint executable.
+ * the Tendermint executable. OR tendermint is in your path.
  */
 const HOME = './testdb'
 
@@ -46,6 +46,7 @@ function main() {
 
         // * Interaction
         current.value += v;
+
         // * State change
         ctx.set('current', current);
 
@@ -60,6 +61,11 @@ function main() {
     // View the current count state
     app.onQuery('getcount', async (key, ctx) => {
         return await ctx.get(key);
+    });
+
+    // Test processing keys on queries
+    app.onQuery('randomtest', async (key, ctx) => {
+        return key;
     });
 
     // Start the application
