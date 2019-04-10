@@ -96,8 +96,8 @@ describe('abci', () => {
         let r0 = await app.checkTx({
             tx: msg1.encode()
         });
-
         assert.equal(0, r0.code);
+
 
         // Sign with an unregistered account
         let msg2 = new Message('hello', 'any', {
@@ -109,7 +109,6 @@ describe('abci', () => {
         });
 
         assert.equal(r1.code, 1);
-        assert.equal(r1.log, 'Sender account not found');
 
         // Query account
         let qr = await app.query({

@@ -2,7 +2,7 @@
 
 const assert = require('bsert');
 const breezy = require('../index');
-const debug = require('debug')('cli');
+const debug = require('debug')('cli:*');
 const tstaccounts = require('./testaccounts');
 
 /*
