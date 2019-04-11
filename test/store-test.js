@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('bsert');
-const StateStore = require('../lib/store/index');
+const StateStore = require('../index').store;
 
 async function testit() {
     let store = new StateStore();

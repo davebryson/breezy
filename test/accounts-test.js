@@ -5,7 +5,7 @@ const TxMockContext = require('./util');
 const Account = require('../index').accounts;
 const Message = require('../index').Message;
 const tstaccounts = require('../example/testaccounts');
-const StateStore = require('../lib/store');
+const StateStore = require('../index').store;
 
 async function loadAccounts(ctx) {
     Object.values(tstaccounts).forEach((a) => {

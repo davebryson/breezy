@@ -19,5 +19,8 @@ exports.wallet = require('./lib/common/wallet');
 // and the basic account service...
 exports.accounts = require('./lib/services/accounts');
 
+// and the store (most to use for testing);
+exports.store = require('./lib/store');
+
 // and a breezy mock...
 exports.mock = new require('./lib/application/mock');
