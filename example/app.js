@@ -1,21 +1,17 @@
 const assert = require('bsert');
 const breezy = require('../index');
-const tendermint = require('tendermint-node');
 const Accounts = require('../lib/services/accounts');
 
 const tstaccounts = require('./testaccounts');
 
 /**
  * NOTE: This example assumes you have Tendermint installed.
- * AND, you've also exported the environment variable TM_BINARY that points to
- * the Tendermint executable. OR tendermint is in your path.
+ * AND you've exported the environment variable TM_BINARY that points to
+ * the Tendermint executable.
  */
 const HOME = './testdb'
 
 function main() {
-    // Run tendermint --init if needed
-    tendermint.initSync(HOME);
-
     // Create the app
     let app = breezy.app(HOME);
 
@@ -29,11 +25,9 @@ function main() {
         });
     });
 
-    // Check signature/validate msg before a tx is added to the mempool
-    app.onVerifyTx(Accounts.authenticateAccount);
-
     // Handle account related txs
     app.onTx('account', Accounts.accountTxHandler);
+
     // Handle 'add' txs
     app.onTx('add', async (ctx) => {
         // * Conditions
@@ -58,6 +52,7 @@ function main() {
 
     // View an account
     app.onQuery('accountview', Accounts.accountQuery);
+
     // View the current count state
     app.onQuery('getcount', async (key, ctx) => {
         return await ctx.get(key);
@@ -69,10 +64,7 @@ function main() {
     });
 
     // Start the application
-    app.run();
-
-    // Start tendermint
-    tendermint.node(HOME);
+    app.runWithNode();
 }
 
 main();

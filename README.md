@@ -13,14 +13,6 @@ app.onInitChain((db) => {
     // ...
 });
 
-// Verify transactions
-app.onVerifyTx(async (ctx) => {
-    // checkTx
-    return {
-        code: 0
-    }
-});
-
 // Do a state transistion
 app.onTx('hello', async (ctx) => {
     return {
@@ -36,7 +28,7 @@ app.onQuery('name', async (key ctx) => {
 })
 
 // Start the ABCI server
-app.run();
+app.runWithNode();
 ```
 
 See the `example` directory.

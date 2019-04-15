@@ -79,9 +79,7 @@ describe('abci', () => {
             }
         });
 
-        app.onVerifyTx(Accounts.authenticateAccount);
         app.onQuery('getaccount', Accounts.accountQuery);
-
 
 
         // Run the app 
