@@ -1,11 +1,12 @@
 'use strict';
 
 const assert = require('bsert');
-const TxMockContext = require('./util');
 const Account = require('../index').accounts;
 const Message = require('../index').Message;
-const tstaccounts = require('../example/testaccounts');
+const tstaccounts = require('./utils').testAccounts;
 const StateStore = require('../index').store;
+
+const TxMockContext = require('../lib/application/ctx').TxContext;
 
 async function loadAccounts(ctx) {
     Object.values(tstaccounts).forEach((a) => {
@@ -22,15 +23,15 @@ describe('accounts', () => {
         await loadAccounts(new TxMockContext(store));
 
         let a1 = await Account.accountQuery(
-            tstaccounts['bob'].address,
+            tstaccounts[0].address,
             new TxMockContext(store)
         );
         assert(a1);
-        assert.equal(a1.address, tstaccounts['bob'].address)
+        assert.equal(a1.address, tstaccounts[0].address)
         assert.equal(a1.balance, 10000);
 
         let m1 = new Message('a', 'b', {});
-        m1.sign(tstaccounts['bob'].privateKey);
+        m1.sign(tstaccounts[0].privateKey);
         let r0 = await Account.authenticateAccount(new TxMockContext(store, m1));
         assert.equal(0, r0.code);
 
@@ -39,8 +40,8 @@ describe('accounts', () => {
             await Account.authenticateAccount(new TxMockContext(store, new Message('a', 'b', {})));
         });
 
-        let payer = tstaccounts['bob'].address;
-        let payee = tstaccounts['alice'].address;
+        let payer = tstaccounts[0].address;
+        let payee = tstaccounts[1].address;
         await Account.transferFunds(payer, payee, 100, new TxMockContext(store));
         await store.commit();
 

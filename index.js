@@ -5,7 +5,7 @@
  */
 
 // Expose the app engine...
-exports.app = require('./lib/application');
+/*exports.app = require('./lib/application');
 
 // the rpc client...
 exports.rpcclient = require('./lib/client');
@@ -26,3 +26,16 @@ exports.node = require('./lib/node');
 
 // and a breezy mock...
 exports.mock = new require('./lib/application/mock');
+*/
+
+module.exports = {
+    app: require('./lib/application'),
+    rpcclient: require('./lib/client'),
+    Message: require('./lib/common/txmsg'),
+    wallet: require('./lib/common/wallet'),
+    accounts: require('./lib/services/accounts'),
+    store: require('./lib/store'),
+    node: require('./lib/node'),
+    mock: new require('./lib/application/mock'),
+    simulator: require('./lib/sim')
+}
