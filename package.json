@@ -1,6 +1,6 @@
 {
   "name": "breezy",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "simple framework for building tendermint applications",
   "main": "index.js",
   "scripts": {
